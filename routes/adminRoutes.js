@@ -11,30 +11,14 @@ var users = require("../models/users");
 module.exports = (function() {
     /* Setup */
     "use strict"
-    var apiRoutes = require("express").Router();
+    var adminRoutes = require("express").Router();
 
-    /* API index */
-    apiRoutes.get("/", function(req, res) {
-        res.send("API INDEX");
+    adminRoutes.get("/", function(req, res) {
+        res.send("ADMIN INDEX");
     });
 
-    /* Communities */
-    apiRoutes.get("/communities", function(req, res) {
-        res.json(communities);
-    });
-
-    /* Counties */
-    apiRoutes.get("/counties", function(req, res) {
-        res.json(counties);
-    });
-
-    /* Users */
-    apiRoutes.get("/users", function(req, res) {
-        res.json(users);
-    });
-
-
-    apiRoutes.post("/users", function(req, res) {
+    /* Create user */
+    adminRoutes.post("/users", function(req, res) {
         var user = new User.create({
             email: req.body.email,
             password: req.body.password
@@ -43,6 +27,5 @@ module.exports = (function() {
         })
     })
 
-
-    return apiRoutes;
+    return adminRoutes;
 })();
